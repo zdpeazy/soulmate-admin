@@ -25,6 +25,9 @@
 					<li class="layui-nav-item">
 						<a href="javascript:;" data-url="person.html" data-id='3' data-text="用户账号管理"><i class="layui-icon layui-icon-user"></i><text class="nav-txt">用户账号管理</text></a>
 					</li>
+					<li class="layui-nav-item">
+						<a href="javascript:;" data-url="statistic.html" data-id='4' data-text="统计信息"><i class="layui-icon layui-icon-chart"></i><text class="nav-txt">统计信息</text></a>
+					</li>
 				</ul>
 			</div>
 			<!--右侧内容-->
@@ -63,7 +66,16 @@
 			</div>
 		</div>
 		<script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../static/admin/js/common.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../static/admin/js/common.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../static/admin/js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			function checkStorage(){
+				var token=localStorage.getItem('token');
+				if (!token){
+					window.location.replace('login.html');
+				}
+			}
+			checkStorage();
+		</script>
 	</body>
 </html>

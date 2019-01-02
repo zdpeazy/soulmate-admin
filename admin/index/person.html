@@ -69,6 +69,7 @@
 				_userInfo.prototype.getUserList = function(searchParams){
 					var _t = this;
 					var params = $.extend({}, searchParams, {
+						me: token,
 						pageNo: _t.pageNo,
 						pageSize: _t.pageSize
 					})
@@ -119,6 +120,7 @@
 				_userInfo.prototype.limitLogin = function(userId, day){
 					var _t = this;
 					var params = {
+						me: token,
 						userId: userId,
 						day: day
 					}
@@ -145,6 +147,7 @@
 				_userInfo.prototype.noLimitLogin = function(userId, index){
 					var _t = this;
 					var params = {
+						me: token,
 						userId: userId
 					}
 					$.ajax({
@@ -160,7 +163,7 @@
 							layer.close(index);
 							setTimeout(function(){
 								_t.getUserList();
-							}, 1000)
+							}, 1500)
 						},
 						fail: function(err){
 							layer.msg(err, {time: 1500, icon: 5})

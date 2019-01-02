@@ -123,6 +123,9 @@
 					$.ajax({
 						url: apiUrl + '/admin/topic/all',
 						type: 'get',
+						data: {
+							me: token
+						},
 						success: function(res){
 							if(res.code * 1 != 0){
 								layer.msg(res.message, {time: 1500, icon: 5})
@@ -137,6 +140,10 @@
 				}
 				_chatQuestion.prototype.renderView = function(data){
 					var _t = this, chatGetTopicRespList = data.chatGetTopicRespList;
+					if(!chatGetTopicRespList){
+						_t.bindEvents();
+						return;
+					}
 					for(var i = 0; i < chatGetTopicRespList.length; i ++){
 						var temp = '';
 						var currentQuestionList = chatGetTopicRespList[i].topicDTOList;
@@ -168,6 +175,7 @@
 						return false;
 					}
 					var params = {
+						me: token,
 						topicListId: topicListId,
 						topic: topic
 					}
@@ -181,7 +189,9 @@
 								return;
 							}
 							layer.msg('添加成功', {time: 1500, icon: 1});
-							_t.getQuestionList();
+							setTimeout(function(){
+								_t.getQuestionList();
+							}, 1500)
 						},
 						fail: function(err){
 							layer.msg(err, {time: 1500, icon: 5})
@@ -208,6 +218,7 @@
 					var _t = this;
 					layer.prompt({title: '编辑问题', formType: 3, placeholder: '输入新的问题',}, function(text, index){
 						var params = {
+							me: token,
 							topicId: topicId,
 							topic: text
 						}

@@ -150,6 +150,7 @@
 				_userInfo.prototype.getUserList = function(searchParams){
 					var _t = this;
 					var params = $.extend({}, searchParams, {
+						me: token,
 						pageNo: _t.pageNo,
 						pageSize: _t.pageSize
 					})
@@ -222,7 +223,7 @@
 					})
 
 					form.on('submit(search)', function(data){
-						let searchParams = data.field;
+						var searchParams = data.field;
 						console.log(searchParams)
 						if(!searchParams.userId && !searchParams.nickName && !searchParams.school && !searchParams.city){
 							layer.msg('请选择至少一项', {time: 1000})

@@ -1,5 +1,5 @@
 layui.config({
-	base: '../../static/admin/js/module/'
+	base: '../../static/admin/js/module/' //   部署时修改一下../admin/js/module/
 }).extend({
 	dialog: 'dialog',
 });
@@ -166,3 +166,5 @@ function refresh() {
 
 	layer.closeAll();
 }
+
+var token=localStorage.getItem('token');
