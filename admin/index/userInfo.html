@@ -7,8 +7,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>网站后台管理模版</title>
-		<link rel="stylesheet" type="text/css" href="../../static/admin/layui/css/layui.css"/>
-		<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css"/>
+		<!-- <link rel="stylesheet" type="text/css" href="../../static/admin/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../static/admin/css/admin.css"/> -->
+
+		<link rel="stylesheet" type="text/css" href="/admin/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/admin/css/admin.css"/>
 	</head>
 
 	<body>
@@ -126,9 +129,14 @@
 					</div>
 				</div>
 		</div>
-		<script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<!-- <script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../static/admin/js/common.js" type="text/javascript" charset="utf-8"></script>
-		<script src="../../static/admin/js/apiUrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../static/admin/js/apiUrl.js" type="text/javascript" charset="utf-8"></script> -->
+
+		<!-- 上传服务器文件目录结构 -->
+		<script src="/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/admin/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/admin/js/apiUrl.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			layui.use(['layer', 'form', 'jquery', 'dialog', 'element'], function(){
 				var $ = layui.$,
@@ -160,9 +168,15 @@
 						data: params,
 						success: function(res){
 							if(res.code * 1 != 0){
-								layer.msg(res.message, {time: 1500, icon: 5})
+								if(res.code * 1 == 4942){
+									localStorage.clear();
+									window.location.replace('login.html');
+								} else {
+									layer.msg(res.message, {time: 1500, icon: 5})
+								}
 								return;
 							}
+							
 							console.log(res);
 							_t.currentLength = res.data.userDTOs.length;
 							_t.renderView(res.data);

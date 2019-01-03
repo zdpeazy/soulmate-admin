@@ -1,5 +1,6 @@
 layui.config({
-	base: '../../static/admin/js/module/' //   部署时修改一下../admin/js/module/
+	// base: '../../static/admin/js/module/' //   部署时修改一下../admin/js/module/
+	base: '../admin/js/module/'
 }).extend({
 	dialog: 'dialog',
 });
